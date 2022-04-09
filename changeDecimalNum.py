@@ -1,4 +1,3 @@
-
 binary = list(map(int, list(input())))
 num = 0
 
