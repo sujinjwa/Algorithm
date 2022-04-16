@@ -1,45 +1,33 @@
-OFFSET = 1000
-MAX_R = 2000
+OFFSET = 100
+MAX_R = 200
 
-# 변수 선언 및 입력
+# 2차원 배열 초기화
+## 주의!
+# 범위는 (MAX_R + 1) 이어야 함 : -100~1까지 100개, 1~100까지 100개, 0 1개 -> 201개
 n = int(input())
-segments = []
-
-# 현재 위치
-cur = 0
+checked = [
+    [0] * (MAX_R + 1)
+    for _ in range(MAX_R + 1)
+]
 
 for _ in range(n):
-    distance, direction = tuple(input().split())
-    distance = int(distance)
+    # (x1, y1), (x2, y2) 입력
+    x1, y1, x2, y2 = tuple(map(int, input().split()))
+    # OFFSET 더해주기
+    x1, y1 = x1 + OFFSET, y1 + OFFSET
+    x2, y2 = x2 + OFFSET, y2 + OFFSET
 
-    if direction == 'L':
-        # 왼쪽으로 이동할 경우 : cur - distance ~ cur까지 경로 이동
-        section_left = cur - distance
-        section_right = cur
-        cur -= distance
-    else:
-        # 오른쪽으로 이동할 경우 : cur ~ cur + distance까지 경로 이동
-        section_left = cur
-        section_right = cur + distance
-        cur += distance
-
-    segments.append([section_left, section_right])
-
-checked = [0] * (MAX_R + 1)
-
-for x1, x2 in segments:
-    # OFFSET을 더해준다.
-    x1, x2 = x1 + OFFSET, x2 + OFFSET
-
-    # 구간을 칠해준다.
-    # 구간 단위로 진행하는 문제이므로
-    # x2에 등호가 들어가지 않음에 유의한다.
+    # 직사각형 범위 내 1 더하기 (직사각형 칠해주기)
     for i in range(x1, x2):
-        checked[i] += 1
+        for j in range(y1, y2):
+            checked[i][j] += 1
 
-# 2번 이상 지나간 영역의 크기를 구한다.
-cnt = 0
-for elem in checked:
-    if elem >= 2:
-        cnt += 1
-print(cnt)
+# 모든 직사각형의 넓이
+area = 0
+
+for row in checked:
+    for elem in row:
+        if elem >= 1:
+            area += 1
+
+print(area)
