@@ -5,15 +5,16 @@ grid = [
     for _ in range(n)
 ]
 
-max_num = 0 # 1 * 3 크기의 격자 범위 내 최대 동전의 개수
+max_cnt = 0 # 1 * 3 크기의 격자 범위 내 최대 동전의 개수
 
 # i := 행, j := 열
 
-sum_num = 0 # 모든 1 * 3 크기의 격자 범위 내 동전의 개수
+# sum_num = 0 # 모든 1 * 3 크기의 격자 범위 내 동전의 개수
 for i in range(n):
     for j in range(n-2):
-        sum_num = grid[i][j] + grid[i][j+1] + grid[i][j+2]
+        # for문 밖에서 cnt 변수 미리 선언할 필요 없음
+        cnt = grid[i][j] + grid[i][j+1] + grid[i][j+2]
     
-        max_num = max(max_num, sum_num)
+        max_cnt = max(max_cnt, cnt)
 
-print(max_num)
+print(max_cnt)
