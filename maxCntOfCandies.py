@@ -1,4 +1,4 @@
-MAX_NUM = 100
+MAX_NUM = 100 # 0 <= 바구니의 위치 <= 100
 
 n, k = tuple(map(int, input().split())) # 총 바구니 개수 := n, 중심점으로부터 떨어진 거리 := k
 
