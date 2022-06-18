@@ -17,9 +17,9 @@ person = info[p - 1][0] # f번째 메시지 작성한 사람
 undefined = info[p - 1][1] # f번째 메시지 읽지 않은 사람 수
 
 for message in info:
-    # f번째 메시지 이후에
-    # 메시지 보낸 사람이 있는 경우
-    # 그 사람은 0으로 표기
+    # f번째 메시지 이후에 메시지 보낸 사람이 있는 경우
+    # 그 사람들은 f번째 메세지를 정확히 읽은 것이므로
+    # 읽었다는 표시를 '0'으로 표기
     for i in range(n):
         if int(message[1]) >= int(undefined) and message[0] == people[i]:
             people[i] = '0'
@@ -28,5 +28,5 @@ for elem in people:
     if undefined == '0': # 메시지 모두 읽은 경우
         break
 
-    if elem != '0':
+    if elem != '0': # 메시지 안 읽은 가능성 있는 사람인 경우
         print(elem, end=' ')
