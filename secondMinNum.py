@@ -3,6 +3,10 @@ import sys
 n = int(input())
 a = list(map(int, input().split()))
 
+# case 1: 가장 작은 원소 1개 또는 여러개, 두번째로 작은 원소 1개씩 있는 경우
+# case 2: 두번째로 작은 원소가 없는 경우 = 최솟값만 여러 개 있는 경우
+# case 3: 두번째로 작은 원소가 여러 개 있는 경우
+
 # 새로운 배열을 만들어 정렬하고
 # 2번째로 작은 숫자 찾아낸다
 myarr = sorted(a)
