@@ -13,7 +13,7 @@ for _ in range(n):
 
     if direction == 'L':
         # 왼쪽으로 이동할 경우 : cur - distance ~ cur까지 경로 이동
-        section_left = cur - distance
+        section_left = cur - distance 
         section_right = cur
         cur -= distance
     
