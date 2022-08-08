@@ -10,7 +10,7 @@ def partition(low, high):
 
     # j : 빨간색 화살표의 위치
     # (pivot인 arr[high] 제외한 모든 숫자 순회하며 pivot 보다 작은지 큰지 확인하기 위한 index)
-    for j in range(low, high):
+    for j in range(low, high): # 이때, j는 low부터 high - 1까지 순회. pivot인 arr[high]까지는 순회하지 않아도 되니까.
         
         # 빨간색 화살표가 가리키는 원소가 pivot보다 작다면,
         # pivot보다 왼쪽에 위치해야 하므로 두 원소의 위치 바꿔줌
@@ -33,7 +33,7 @@ def quick_sort(low, high):
         # 이때, 아래의 pos는 반환될 기준 숫자가 되는 pivot의 최종 위치임
         pos = partition(low, high) # 해당 pivot의 위치를 pos에 넣어줌
 
-        # 중간 숫자인 pos 기준으로 양쪽 배열에 quick sort 진행
+        # 중간 숫자인 pos 기준으로 양쪽 배열에 quick sort 진행. 이때 pos는 어디에도 속하지 않음.
         quick_sort(low, pos - 1) # pivot의 왼쪽 구간의 원소들 정렬
         quick_sort(pos + 1, high) # pivot의 오른쪽 구간의 원소들 정렬
 
