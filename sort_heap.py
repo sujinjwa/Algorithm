@@ -8,7 +8,7 @@ def heapify(arr, n, i):
     right = i * 2 + 1 # 부모 노드(i)의 오른쪽 자식 노드의 인덱스
     
     # 주의할 점!
-    # 
+    # 왼쪽과 오른쪽 자식 노드의 인덱스가 배열 범위 벗어나지 않는지 확인
     if left <= n and arr[left] > arr[largest]: # 왼쪽 자식 노드가 더 큰 경우
         largest = left
     
@@ -17,23 +17,24 @@ def heapify(arr, n, i):
 
     if largest != i: # 자식 노드가 부모 노드보다 더 큰 경우
         arr[largest], arr[i] = arr[i], arr[largest] # 두 값을 swap
-        print(arr)
+        # print(arr)
         heapify(arr, n, largest) # largest인 자식 노드에서 다시 heapify 진행
         # 이때 heapify 내 파라미터인 n은 처음 입력 받은 원소의 개수인 n이 아니라
         # 해당 heapify 함수로 전달 받은 파라미터 n 을 의미 (즉, 원소의 개수 + 1 임)
 
 
-# 첫 번째 heapify 진행
-# n / 2 부터 1번째 노드까지 (0번 값은 제외이므로 for문의 완료값은 0)
+# 첫 번째 heapify 진행하여 max-heap 완성
+# n / 2 부터 1번째 노드까지 (0번 값은 제외이므로 for문의 완료값은 0으로 설정)
 for i in range(n//2, 0, -1):
     # i := 해당 (부모) 노드의 인덱스
     heapify(arr, n, i)
-    # n 대신 n + 1 쓰려면, heapify함수 내 if 조건문에서 left <= n, right <= n 으로 수정해야 함
-    # 39번 줄의 i - 1 또한 i로 수정해야 함
+    # n 대신 n + 1 쓰려면, heapify함수 내 if 조건문에서 left < n, right < n 으로 수정해야 함
+    # 위의 경우에서 left == n 이거나 right == n 라면 left, right는 배열 범위를 벗어나는 것이기 때문
+    # 40번 줄의 i - 1 또한 i로 수정해야 함
 
 # 두 번째 heapify 진행
 # 이때 1번째 노드가 최댓값이므로 마지막 노드와 swap 해줌
-# 이후 1번째 노드 기준으로 max-heap 만들기 위해 heapify 진행
+# 이후 마지막 노드 제외한 (i-1개의) 노드끼리 max-heap 만들기 위해 1번째 노드 기준으로 heapify 1번 진행
 for i in range(n, 0, -1):
     arr[i], arr[1] = arr[1], arr[i]
     heapify(arr, i - 1, 1)
