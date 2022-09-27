@@ -19,6 +19,7 @@ def print_desc(num):
 
 print_asc(1)
 print_desc(n)
+print()
 
 
 # 두 번째 방법
