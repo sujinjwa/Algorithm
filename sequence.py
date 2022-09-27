@@ -1,11 +1,12 @@
 n = int(input())
 
-def remain(n):
-    if n == 1:
+def recur(n):
+    if n == 0:
         return 2
-    if n == 2:
+    
+    elif n == 1:
         return 4
     
-    return remain(n-1) * remain(n-2) % 100
+    return (recur(n - 1) * recur(n - 2)) % 100
 
-print(remain(n))
+print(recur(n - 1))
