@@ -26,6 +26,7 @@ for _ in range(t):
         cur_dir = 3 - cur_dir
         continue
 
+    # 해당 방향으로 한 칸 이동
     r, c = r + dxs[cur_dir], c + dys[cur_dir]
 
 print(r + 1, c + 1)
