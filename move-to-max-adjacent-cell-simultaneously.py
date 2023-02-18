@@ -42,32 +42,45 @@ def is_max_pos(max_pos, next_x, next_y):
 dxs = [-1, 1, 0, 0]
 dys = [0, 0, -1, 1]
 
-for _ in range(t):
-    # t초 중 1초에 한번씩 모든 구슬 이동
+# # (x,y)에 위치한 구슬을 인접한 위치 중 가장 큰 값이 있는 곳으로 이동
+def move(x, y):
+    max_pos = 0
+    max_x, max_y = 0, 0
+                
+    # 각 구슬의 상하좌우 한칸씩 이동했을 때의 위치 확인
+    for dx, dy in zip(dxs, dys):
+        next_x, next_y = x + dx, y + dy
+
+        # 이동한 위치가 격자를 벗어나지 않고
+        # 지금까지 조회한 칸 중 가장 큰 값이 적혀있는 경우
+        if in_range(next_x, next_y) and is_max_pos(max_pos, next_x, next_y):
+            max_pos = grid[next_x][next_y]
+            max_x, max_y = next_x, next_y
+ 
+    # 가장 큰 값이 적혀있는 숫자의 위치로 이동
+    next_count[max_x][max_y] += 1
+
+def move_all():
     for x in range(n):
         for y in range(n):
             if count[x][y] == 1: # 해당 x, y칸에 구슬이 있는 경우
-                max_pos = 0
-                max_x, max_y = 0, 0
-                # 각 구슬의 상하좌우 한칸씩 이동했을 때의 위치 확인
-                for dx, dy in zip(dxs, dys):
-                    next_x, next_y = x + dx, y + dy
+                move(x, y)
 
-                    # 이동한 위치가 격자를 벗어나지 않고
-                    # 지금까지 조회한 칸 중 가장 큰 값이 적혀있는 경우
-                    if in_range(next_x, next_y) and is_max_pos(max_pos, next_x, next_y):
-                        max_pos = grid[next_x][next_y]
-                        max_x, max_y = next_x, next_y
- 
-                # 가장 큰 값이 적혀있는 숫자의 위치로 이동
-                next_count[max_x][max_y] += 1
-    
-    # 1초 동안 모든 구슬이 인접한 곳 중 큰 값의 위치로 이동한 이후
+def remove_duplicate_marbles():
+     # 1초 동안 모든 구슬이 인접한 곳 중 큰 값의 위치로 이동한 이후
     # next_count 확인
     for x in range(n):
         for y in range(n):
             if next_count[x][y] > 1: # 두 구슬 이상이 충돌한 경우
                 next_count[x][y] = 0 # 충돌한 모든 구슬 제거
+
+# t초 동안 시뮬레이션 진행
+for _ in range(t):
+    # t초 중 1초에 한번씩 모든 구슬 이동
+    move_all()
+    
+    # 충돌한 모든 구슬 제거
+    remove_duplicate_marbles()
     
     # count를 next_count로 덮어 씌우기
     count = next_count
@@ -82,7 +95,8 @@ for _ in range(t):
 cnt = 0
 for x in range(n):
     for y in range(n):
-        if count[x][y] == 1:
-            cnt += 1
+        # if count[x][y] == 1:
+        #     cnt += 1
+        cnt += count[x][y]
 
 print(cnt)
