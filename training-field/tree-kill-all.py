@@ -242,16 +242,12 @@ def simulate():
 
     # 1. 모든 나무들이 그들의 인접한 나무의 개수만큼 성장
     adjacent_grow()
-    print(grid)
 
     # 2. 번식 진행
     breeding()
-    print(grid)
 
     # 3. 가장 많이 박멸되는 칸 구하기
     pos, max_cnt = find_most_killed_pos()
-    print(pos)
-    print(max_cnt)
     
     # 총 박멸된 나무의 그루 수 갱신
     total_removed_trees += max_cnt
@@ -262,12 +258,9 @@ def simulate():
 
     # 3-1. 가장 많이 박멸되는 칸에 제초제 뿌리기
     kill(pos)
-    print(grid)
 
     # 3-2. c년 지난 경우 제초제 없애기
     remove_kill()
-    print(grid)
-    print(herb)
 
 # m년 동안 박멸 시뮬레이션 진행
 for _ in range(m):
