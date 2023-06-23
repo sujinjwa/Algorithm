@@ -14,14 +14,14 @@ def solution(players, callings):
 # 다른 사람 답안 O(N)
 # 딕셔너리 공부해야겠다
 def solution2(players, callings):
-    p_dic = {player: index for index, player in enumerate(players)}
+    p_dic = {player: index for index, player in enumerate(players)} # index = 해당 선수의 현재 순위
 
     for p in callings:
         c = p_dic[p]
 
-        p_dic[p] -= 1
-        p_dic[players[c-1]] += 1
-        players[c-1], players[c] = players[c], players[c-1]
+        p_dic[p] -= 1 # calling된 선수 순위 - 1
+        p_dic[players[c-1]] += 1 # calling된 선수 바로 앞 선수 순위 + 1
+        players[c-1], players[c] = players[c], players[c-1] # 두 선수 위치 변경
     
     return players
 
