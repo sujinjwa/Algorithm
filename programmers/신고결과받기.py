@@ -1,4 +1,8 @@
+# level1 172928
+# https://school.programmers.co.kr/learn/courses/30/lessons/92334
+
 # 내 답안, 시간초과 남, O(N^3)
+
 def solution(id_list, report, k):
     dict = []
     
