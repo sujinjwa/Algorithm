@@ -10,5 +10,21 @@ def solution(phone_book):
     
     return True
 
-
 # phone_book의 길이는 1이상 1,000,000 이하이므로 이중 for문 사용하면 안됨
+
+
+def solution2(phone_book):
+    answer = True
+    dict = {}
+
+    for p in phone_book:
+        dict[p] = 1
+    
+    for p in phone_book:
+        temp = ''
+        for n in p:
+            temp += n
+            if temp in dict and temp != p:
+                answer = False
+    
+    return answer
