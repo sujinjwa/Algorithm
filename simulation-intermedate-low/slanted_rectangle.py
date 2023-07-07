@@ -28,7 +28,6 @@ def get_sum(x, y, k, l):
 
     return sum_nums
 
-
 ans = 0
 # 기울어진 직사각형 만들기 위한 모든 시작점 (x, y)
 for x in range(2, n): # 행은 index=2부터 조회
@@ -38,7 +37,6 @@ for x in range(2, n): # 행은 index=2부터 조회
         # l = height
         for k in range(1, n):
             for l in range(1, n):
-                
                 ans = max(ans, get_sum(x, y, k, l))
 
 print(ans)
